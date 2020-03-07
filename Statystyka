@@ -1,0 +1,51 @@
+//Kacper Walkusz kl.Ibg VLO
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    int n, x, sum=0;
+    cin>>n;
+    int tab[n];
+    srand(time(NULL));
+    fstream dane;
+    fstream liczby;
+
+    dane.open("dane.txt", ios :: out);
+
+    for(int i=0; i<n; i++)
+    {
+        x=rand()%10 + 1;
+        dane<< x <<endl;
+    }
+
+    dane.close();
+
+    dane.open("dane.txt", ios :: in);
+    liczby.open("liczby.txt", ios :: out);
+    for(int i = 0; i<n; i++)
+    {
+        dane >> tab[i];
+    }
+
+    for(int i = 1; i <= n; i++)
+    {
+        for(int j = 0; j < n;  j++)
+        {
+            if(tab[j]==i)
+                sum=sum+1;
+        }
+
+    liczby<<i<<": "<< sum <<endl;
+    sum=0;
+    }
+
+    dane.close();
+    liczby.close();
+
+    return 0;
+}
